@@ -1,5 +1,5 @@
 steps:
-- name: 'hashicorpgpii/exekube:0.4.0-google/terraform:light'
+- name: 'gpii/exekube:0.4.0-google'
   entrypoint: 'sh'
   args:
     - '-c'
