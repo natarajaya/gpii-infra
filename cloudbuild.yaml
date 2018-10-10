@@ -1,4 +1,10 @@
 steps:
-- name: 'hashicorp/terraform:light'
-  args: ['fmt', '--check=true', '/workspace']
+- name: 'hashicorpgpii/exekube:0.4.0-google/terraform:light'
+  entrypoint: 'sh'
+  args:
+    - '-c'
+    - |
+      echo "Running Terraform format check..."
+      terraform fmt --check=true /workspace
   timeout: 120s
+tags: ['terraform-fmt-check']
