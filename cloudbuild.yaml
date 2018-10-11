@@ -1,5 +1,6 @@
 steps:
 - name: 'gpii/exekube:0.4.0-google'
+  id: 'terraform-fmt-check'
   entrypoint: 'sh'
   args:
     - '-c'
@@ -7,4 +8,26 @@ steps:
       echo "Running Terraform format check..."
       terraform fmt --check=true /workspace
   timeout: 120s
-tags: ['terraform-fmt-check']
+- name: 'gpii/exekube:0.4.0-google'
+  id: 'gcp-unit-tests'
+  entrypoint: 'sh'
+  args:
+    - '-c'
+    - |
+      echo "Running GCP unit tests..."
+      cd /workspace/shared/rakefiles/tests
+      gem install bundler --no-ri --no-rdoc
+      bundle install --path "vendor/bundle"
+      rake
+  timeout: 240s
+- name: 'gpii/exekube:0.4.0-google'
+  id: 'aws-unit-tests'
+  entrypoint: 'sh'
+  args:
+    - '-c'
+    - |
+      echo "Running AWS unit tests..."
+      cd /workspace/aws/rakefiles/tests
+      gem install test-unit --no-ri --no-rdoc
+      rake
+  timeout: 120s
