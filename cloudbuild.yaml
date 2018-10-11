@@ -34,3 +34,7 @@ steps:
       gem install test-unit --no-ri --no-rdoc
       rake
   timeout: 120s
+options:
+  logging: GCS_ONLY
+  logStreamingOption: STREAM_ON
+  logsBucket: gs://gpii-gcp-dev-natarajaya-build-logs
