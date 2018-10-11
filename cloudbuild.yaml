@@ -1,5 +1,5 @@
 steps:
-- name: 'gpii/exekube:0.4.0-google'
+- name: 'gcr.io/gpii-gcp-dev-natarajaya/exekube:0.4.0-google'
   id: 'terraform-fmt-check'
   entrypoint: 'sh'
   waitFor: ['-']
@@ -9,7 +9,7 @@ steps:
       echo "Running Terraform format check..."
       terraform fmt --check=true /workspace
   timeout: 120s
-- name: 'gpii/exekube:0.4.0-google'
+- name: 'gcr.io/gpii-gcp-dev-natarajaya/exekube:0.4.0-google'
   id: 'gcp-unit-tests'
   entrypoint: 'sh'
   waitFor: ['-']
@@ -22,7 +22,7 @@ steps:
       bundle install --path "vendor/bundle"
       rake
   timeout: 120s
-- name: 'gpii/exekube:0.4.0-google'
+- name: 'gcr.io/gpii-gcp-dev-natarajaya/exekube:0.4.0-google'
   id: 'aws-unit-tests'
   entrypoint: 'sh'
   waitFor: ['-']
