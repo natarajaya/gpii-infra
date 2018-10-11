@@ -2,6 +2,7 @@ steps:
 - name: 'gpii/exekube:0.4.0-google'
   id: 'terraform-fmt-check'
   entrypoint: 'sh'
+  waitFor: ['-']
   args:
     - '-c'
     - |
@@ -11,6 +12,7 @@ steps:
 - name: 'gpii/exekube:0.4.0-google'
   id: 'gcp-unit-tests'
   entrypoint: 'sh'
+  waitFor: ['-']
   args:
     - '-c'
     - |
@@ -23,6 +25,7 @@ steps:
 - name: 'gpii/exekube:0.4.0-google'
   id: 'aws-unit-tests'
   entrypoint: 'sh'
+  waitFor: ['-']
   args:
     - '-c'
     - |
