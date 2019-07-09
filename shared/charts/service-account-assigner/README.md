@@ -16,7 +16,7 @@ default values.
 |-------------------------|------------------------------------------------|--------------------------------------------------|
 | `image.repository`      | container image repository                     | `gpii/k8s-gke-service-account-assigner`          |
 | `image.pullPolicy`      | container image PullPolicy                     | `IfNotPresent`                                   |
-| `image.tag`             | container image tag                            | `master-gpii.1`                                  |
+| `image.checksum`        | container image checksum                       | `sha256:c464aceecdb83363ee8d339cfdcc6877210b881be1e8fa020ffaddf25a3c83bd`                                  |
 | `defaultServiceAccount` | default service account to be assigned to pods | `default`                                        |
 | `defaultScopes`         | list of default scopes to be assigned to pods  | `https://www.googleapis.com/auth/cloud-platform` |
 

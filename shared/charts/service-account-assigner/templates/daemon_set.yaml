@@ -22,7 +22,7 @@ spec:
       serviceAccountName: {{ include "service_account_assigner.fullname" . }}
       containers:
       - name: {{ .Chart.Name }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        image: "{{ .Values.image.repository }}@{{ .Values.image.checksum }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         args:
         - "--iptables=true"

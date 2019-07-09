@@ -1,7 +1,7 @@
 # Default values for certmerge-operator
 image:
   repository: gpii/service-account-assigner
-  tag: 0.0.2-gpii.0
+  checksum: sha256:c464aceecdb83363ee8d339cfdcc6877210b881be1e8fa020ffaddf25a3c83bd
   pullPolicy: IfNotPresent
 
 defaultServiceAccount: default
