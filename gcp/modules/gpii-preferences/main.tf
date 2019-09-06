@@ -16,6 +16,10 @@ variable "requests_memory" {}
 variable "limits_cpu" {}
 variable "limits_memory" {}
 
+variable "couchdb_active_cluster_name" {
+  default = "couchdb"
+}
+
 # Secret variables
 variable "secret_couchdb_admin_username" {}
 
@@ -42,6 +46,8 @@ data "template_file" "preferences_values" {
     requests_memory        = "${var.requests_memory}"
     limits_cpu             = "${var.limits_cpu}"
     limits_memory          = "${var.limits_memory}"
+
+    couchdb_active_cluster_name = "${var.couchdb_active_cluster_name}"
   }
 }
 

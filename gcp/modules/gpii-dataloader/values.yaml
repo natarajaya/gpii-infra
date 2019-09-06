@@ -3,4 +3,6 @@ image:
   checksum: ${dataloader_checksum}
 
 couchdb:
-  url: "http://${couchdb_admin_username}:${couchdb_admin_password}@couchdb-svc-couchdb.gpii.svc.cluster.local:5984/gpii"
+  url: "http://${couchdb_admin_username}:${couchdb_admin_password}@${couchdb_active_cluster_name}-svc-couchdb.gpii.svc.cluster.local:5984/gpii"
+
+couchdbClusterName: ${couchdb_active_cluster_name}

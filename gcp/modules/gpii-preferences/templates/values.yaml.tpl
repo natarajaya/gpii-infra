@@ -4,7 +4,9 @@ image:
   repository: ${preferences_repository}
   checksum: ${preferences_checksum}
 
-datasourceHostname: "http://${couchdb_admin_username}:${couchdb_admin_password}@couchdb-svc-couchdb.gpii.svc.cluster.local"
+datasourceHostname: "http://${couchdb_admin_username}:${couchdb_admin_password}@${couchdb_active_cluster_name}-svc-couchdb.gpii.svc.cluster.local"
+
+couchdbClusterName: ${couchdb_active_cluster_name}
 
 enableStackdriverTrace: true
 

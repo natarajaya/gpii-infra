@@ -11,6 +11,10 @@ variable "flushtokens_checksum" {}
 variable "secret_couchdb_admin_username" {}
 variable "secret_couchdb_admin_password" {}
 
+variable "couchdb_active_cluster_name" {
+  default = "couchdb"
+}
+
 data "template_file" "flushtokens_values" {
   template = "${file("values.yaml")}"
 
@@ -20,6 +24,8 @@ data "template_file" "flushtokens_values" {
 
     couchdb_admin_username = "${var.secret_couchdb_admin_username}"
     couchdb_admin_password = "${var.secret_couchdb_admin_password}"
+
+    couchdb_active_cluster_name = "${var.couchdb_active_cluster_name}"
   }
 }
 

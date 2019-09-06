@@ -21,6 +21,10 @@ variable "requests_memory" {}
 variable "limits_cpu" {}
 variable "limits_memory" {}
 
+variable "couchdb_active_cluster_name" {
+  default = "couchdb"
+}
+
 # Secret variables
 variable "secret_couchdb_admin_username" {}
 
@@ -53,6 +57,8 @@ data "template_file" "flowmanager_values" {
     project_id             = "${var.project_id}"
     acme_server            = "${var.env == "prd" || var.env == "stg" ? "https://acme-v02.api.letsencrypt.org/directory" : "https://acme-staging-v02.api.letsencrypt.org/directory"}"
     acme_email             = "${local.acme_email}"
+
+    couchdb_active_cluster_name = "${var.couchdb_active_cluster_name}"
   }
 }
 
