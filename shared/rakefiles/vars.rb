@@ -51,6 +51,9 @@ class Vars
     # Hack to force Terraform to reapply some resources on every run
     ENV["TF_VAR_nonce"] = SecureRandom.hex
 
+    # Active CouchDB cluster name
+    ENV["TF_VAR_couchdb_active_cluster_name"] = "green"
+
     # Set HELM TLS variables
     ENV["HELM_TLS_CERT"]    = "/project/live/#{env}/secrets/kube-system/helm-tls/helm.cert.pem"
     ENV["HELM_TLS_KEY"]     = "/project/live/#{env}/secrets/kube-system/helm-tls/helm.key.pem"
