@@ -57,15 +57,29 @@ spec:
         resources:
           {{ toYaml .Values.resources | indent 10 | trim }}
         {{- end }}
+        lifecycle:
+          preStop:
+            exec:
+              command:
+                - sh
+                - -c
+                - touch /tmp/not_ready && sleep 5
         livenessProbe:
           exec:
             command:
-            - '/usr/bin/curl'
-            - '-f'
-            - 'http://localhost:{{ .Values.flowmanagerListenPort }}/health'
+            - /usr/bin/curl
+            - -f
+            - http://localhost:{{ .Values.flowmanagerListenPort }}/health
         readinessProbe:
+          periodSeconds: 2
+          failureThreshold: 1
           exec:
             command:
-            - '/usr/bin/curl'
-            - '-f'
-            - 'http://localhost:{{ .Values.flowmanagerListenPort }}/ready'
+            - sh
+            - -c
+            - |
+              if [ -f /tmp/not_ready ]; then \
+                exit 1; \
+              else \
+                curl -f http://localhost:{{ .Values.flowmanagerListenPort }}/ready; \
+              fi
