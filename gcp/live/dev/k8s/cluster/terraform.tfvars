@@ -19,6 +19,6 @@ terragrunt = {
 
 # ↓ Module configuration (empty means all default)
 
-node_type = "n1-highcpu-4"
+node_type = "n1-highcpu-8"
 # Allow images from our test GCR.
 binary_authorization_admission_whitelist_patterns = ["gcr.io/gpii-common-prd/*", "gcr.io/gpii2test-common-stg/*"]

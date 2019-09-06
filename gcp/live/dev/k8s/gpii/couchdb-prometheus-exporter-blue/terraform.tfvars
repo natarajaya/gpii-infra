@@ -6,7 +6,7 @@ terragrunt = {
 
   dependencies {
     paths = [
-      "../couchdb",
+      "../couchdb-blue",
       "../istio",
     ]
   }
@@ -17,3 +17,5 @@ terragrunt = {
 }
 
 # ↓ Module configuration (empty means all default)
+
+couchdb_release_name = "couchdb-blue"

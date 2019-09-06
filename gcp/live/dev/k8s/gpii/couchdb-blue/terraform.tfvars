@@ -36,3 +36,6 @@ pv_provisioner       = ""
 # your PVCs immediately :\.)
 execute_destroy_pvcs = "true"
 execute_recover_pvcs = "false"
+
+release_name = "blue"
+replication_target="green"
