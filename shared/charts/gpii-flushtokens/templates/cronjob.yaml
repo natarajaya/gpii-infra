@@ -27,6 +27,10 @@ spec:
             image: "{{ .Values.image.repository }}@{{ .Values.image.checksum }}"
             command: [ "/bin/sh", "-c", "/app/scripts/dockerDeleteExpiredAccessTokens.sh" ]
             env:
+            {{- if .Values.couchdbClusterName }}
+            - name: COUCHDB_CLUSTER_NAME
+              value: {{ .Values.couchdbClusterName }}
+            {{- end }}
             - name: MAX_DOCS_IN_BATCH_PER_REQUEST
               value: '{{ .Values.maxDocsInBatchPerRequest }}'
             - name: GPII_COUCHDB_URL

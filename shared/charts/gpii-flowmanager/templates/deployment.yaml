@@ -32,6 +32,10 @@ spec:
         - containerPort: {{ .Values.flowmanagerListenPort }}
           name: http
         env:
+        {{- if .Values.couchdbClusterName }}
+        - name: COUCHDB_CLUSTER_NAME
+          value: {{ .Values.couchdbClusterName }}
+        {{- end }}
         - name: NODE_ENV
           value: '{{ .Values.nodeEnv }}'
         - name: GPII_FLOWMANAGER_LISTEN_PORT

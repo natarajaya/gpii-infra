@@ -20,6 +20,10 @@ spec:
         image: "{{ .Values.image.repository }}@{{ .Values.image.checksum }}"
         command: [ '/app/scripts/deleteAndLoadSnapsets.sh' ]
         env:
+        {{- if .Values.couchdbClusterName }}
+        - name: COUCHDB_CLUSTER_NAME
+          value: {{ .Values.couchdbClusterName }}
+        {{- end }}
         - name: GPII_COUCHDB_URL
           valueFrom:
             secretKeyRef:
