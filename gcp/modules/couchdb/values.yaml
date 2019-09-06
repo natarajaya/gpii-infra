@@ -32,7 +32,7 @@ affinity:
             - key: "app"
               operator: In
               values:
-              - couchdb
+              - ${release_name}
         topologyKey: "kubernetes.io/hostname"
 
 couchdbConfig:

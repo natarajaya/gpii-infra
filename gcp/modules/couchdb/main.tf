@@ -27,6 +27,10 @@ variable "pv_provisioner" {}
 variable "execute_destroy_pvcs" {}
 variable "execute_recover_pvcs" {}
 
+variable "release_name" {
+  default = "couchdb"
+}
+
 # Secret variables
 
 variable "secret_couchdb_admin_password" {}
@@ -61,6 +65,7 @@ data "template_file" "couchdb_values" {
     pv_capacity               = "${var.pv_capacity}"
     pv_storage_class          = "${var.pv_storage_class}"
     pv_provisioner            = "${var.pv_provisioner}"
+    release_name              = "${var.release_name}"
   }
 }
 
@@ -69,7 +74,7 @@ module "couchdb" {
   tiller_namespace = "kube-system"
   client_auth      = "${var.secrets_dir}/kube-system/helm-tls"
 
-  release_name            = "couchdb"
+  release_name            = "${var.release_name}"
   release_namespace       = "${var.release_namespace}"
   release_values          = ""
   release_values_rendered = "${data.template_file.couchdb_values.rendered}"
@@ -87,7 +92,7 @@ resource "null_resource" "couchdb_finish_cluster" {
   provisioner "local-exec" {
     command = <<EOF
       COUCHDB_URL="http://${var.secret_couchdb_admin_username}:${var.secret_couchdb_admin_password}@127.0.0.1:5984"
-      PORT_FORWARD_CMD="kubectl -n ${var.release_namespace} port-forward statefulset/couchdb-couchdb 5984:5984"
+      PORT_FORWARD_CMD="kubectl -n ${var.release_namespace} port-forward statefulset/${var.release_name}-couchdb 5984:5984"
 
       start_forwarding_port() {
         sleep_secs=5

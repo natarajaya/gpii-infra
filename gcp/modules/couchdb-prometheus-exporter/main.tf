@@ -18,6 +18,12 @@ variable "secret_couchdb_admin_username" {}
 
 variable "secret_couchdb_admin_password" {}
 
+# Terragrunt variables
+
+variable "couchdb_release_name" {
+  default = "couchdb"
+}
+
 data "template_file" "couchdb_prometheus_exporter_values" {
   template = "${file("values.yaml")}"
 
@@ -29,6 +35,7 @@ data "template_file" "couchdb_prometheus_exporter_values" {
     prometheus_to_sd_repository            = "${var.prometheus_to_sd_repository}"
     prometheus_to_sd_tag                   = "${var.prometheus_to_sd_tag}"
     replica_count                          = "${var.replica_count}"
+    couchdb_release_name                   = "${var.couchdb_release_name}"
   }
 }
 
@@ -37,7 +44,7 @@ module "couchdb-prometheus-exporter" {
   tiller_namespace = "kube-system"
   client_auth      = "${var.secrets_dir}/kube-system/helm-tls"
 
-  release_name            = "couchdb-prometheus-exporter"
+  release_name            = "${var.couchdb_release_name}-couchdb-prometheus-exporter"
   release_namespace       = "gpii"
   release_values          = ""
   release_values_rendered = "${data.template_file.couchdb_prometheus_exporter_values.rendered}"
