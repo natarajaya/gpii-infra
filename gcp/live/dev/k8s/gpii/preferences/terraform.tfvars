@@ -7,7 +7,8 @@ terragrunt = {
   dependencies {
     paths = [
       "../../kube-system/cert-manager",
-      "../couchdb",
+      "../couchdb-blue",
+      "../couchdb-green",
       "../istio",
     ]
   }

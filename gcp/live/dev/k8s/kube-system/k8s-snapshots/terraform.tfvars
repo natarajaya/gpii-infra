@@ -8,7 +8,8 @@ terragrunt = {
     paths = [
       "../helm-initializer",
       "../service-account-assigner",
-      "../../gpii/couchdb",
+      "../../gpii/couchdb-green",
+      "../../gpii/couchdb-blue",
     ]
   }
 
