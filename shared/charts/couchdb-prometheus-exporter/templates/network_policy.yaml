@@ -1,9 +1,9 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: allow-{{ template "couchdb_prometheus_exporter.name" . }}-to-couchdb
+  name: allow-{{ template "couchdb_prometheus_exporter.fullname" . }}-to-couchdb
   labels:
-    app: {{ template "couchdb_prometheus_exporter.name" . }}
+    app: {{ template "couchdb_prometheus_exporter.fullname" . }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -19,7 +19,7 @@ spec:
   - from:
     - podSelector:
         matchLabels:
-          app: {{ template "couchdb_prometheus_exporter.name" . }}
+          app: {{ template "couchdb_prometheus_exporter.fullname" . }}
           release: {{ .Release.Name }}
     ports:
     - port: {{ .Values.couchdb.port }}

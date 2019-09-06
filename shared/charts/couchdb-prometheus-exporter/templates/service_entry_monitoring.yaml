@@ -1,9 +1,9 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: ServiceEntry
 metadata:
-  name: {{ template "couchdb_prometheus_exporter.name" . }}-monitoring
+  name: {{ template "couchdb_prometheus_exporter.fullname" . }}-monitoring
   labels:
-    app: {{ template "couchdb_prometheus_exporter.name" . }}
+    app: {{ template "couchdb_prometheus_exporter.fullname" . }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}

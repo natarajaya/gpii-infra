@@ -1,9 +1,9 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "couchdb_prometheus_exporter.name" . }}
+  name: {{ template "couchdb_prometheus_exporter.fullname" . }}
   labels:
-    app: {{ template "couchdb_prometheus_exporter.name" . }}
+    app: {{ template "couchdb_prometheus_exporter.fullname" . }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ template "couchdb_prometheus_exporter.name" . }}
+        app: {{ template "couchdb_prometheus_exporter.fullname" . }}
         release: {{ .Release.Name }}
       annotations:
         # This annotation is needed to allow traffic to metadata.google.internal
@@ -40,12 +40,12 @@ spec:
         - name: COUCHDB_USERNAME
           valueFrom:
             secretKeyRef:
-              name: {{ template "couchdb_prometheus_exporter.name" . }}
+              name: {{ template "couchdb_prometheus_exporter.fullname" . }}
               key: couchdbUsername
         - name: COUCHDB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: {{ template "couchdb_prometheus_exporter.name" . }}
+              name: {{ template "couchdb_prometheus_exporter.fullname" . }}
               key: couchdbPassword
         resources:
 {{ toYaml .Values.resources | indent 10 }}
