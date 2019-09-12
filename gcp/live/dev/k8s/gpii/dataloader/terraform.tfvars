@@ -19,3 +19,4 @@ terragrunt = {
 
 # ↓ Module configuration (empty means all default)
 
+couchdb_active_cluster_name = "blue"

@@ -27,3 +27,5 @@ requests_cpu      = "500m"
 requests_memory   = "256Mi"
 limits_cpu        = "1000m"
 limits_memory     = "256Mi"
+
+couchdb_active_cluster_name = "green"
